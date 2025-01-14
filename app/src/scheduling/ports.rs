@@ -1,12 +1,10 @@
 //! `ports` defines the ways outside systems may interact with the scheduling
 //! domain (and vice versa).
 
-use crate::scheduling::models::employee::{Employee, EmployeeId};
-use crate::scheduling::models::shift::{Shift, ShiftId};
+use crate::scheduling::models::{Employee, EmployeeId, Role};
+use crate::scheduling::models::{Shift, ShiftId};
 use std::future::Future;
 use std::sync::Arc;
-
-use super::models::employee::Role;
 
 pub trait Repository {
     fn get_employee(

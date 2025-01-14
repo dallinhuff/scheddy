@@ -2,6 +2,7 @@
 //! for the scheddy application. Modules are separated by domain concern,
 //! with each module defining models, ports, and services for that domain.
 
+pub mod booking;
 pub mod scheduling;
 
 // A general ID type for use in domain models.
