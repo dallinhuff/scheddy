@@ -1,4 +1,4 @@
-//! The `app` crate contains the core/shared application types & logic
+//! The `foundation` crate contains the core/shared application types & logic
 //! for the scheddy application. Modules are separated by domain concern,
 //! with each module defining models, ports, and services for that domain.
 

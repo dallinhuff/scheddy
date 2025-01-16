@@ -36,22 +36,13 @@ dependencies = [
 name = "api"
 version = "0.1.0"
 dependencies = [
- "app",
  "axum",
  "dotenvy",
+ "foundation",
  "serde",
  "serde_json",
  "thiserror",
  "tokio",
-]
-
-[[package]]
-name = "app"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "thiserror",
- "uuid",
 ]
 
 [[package]]
@@ -207,6 +198,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e13624c2627564efccf4934284bdd98cbaa14e79b0b5a141218e507b3a823456"
 dependencies = [
  "percent-encoding",
+]
+
+[[package]]
+name = "foundation"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "thiserror",
+ "uuid",
 ]
 
 [[package]]
@@ -443,7 +443,7 @@ dependencies = [
 name = "mobile"
 version = "0.1.0"
 dependencies = [
- "app",
+ "foundation",
 ]
 
 [[package]]
@@ -884,7 +884,7 @@ checksum = "943aab3fdaaa029a6e0271b35ea10b72b943135afe9bffca82384098ad0e06a6"
 name = "web"
 version = "0.1.0"
 dependencies = [
- "app",
+ "foundation",
 ]
 
 [[package]]
