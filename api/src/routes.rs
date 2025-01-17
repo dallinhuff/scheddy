@@ -1,9 +1,13 @@
 use crate::state::AppState;
+use axum::Router;
 
-pub fn api_routes() -> axum::Router<AppState> {
-    axum::Router::new().nest("/health", health_routes())
-}
+mod booking;
+mod health;
+mod scheduling;
 
-pub fn health_routes() -> axum::Router<AppState> {
-    axum::Router::new().route("/", axum::routing::get(|| async { "Healthy" }))
+pub fn api_routes() -> Router<AppState> {
+    Router::new()
+        .nest("/health", health::routes().with_state(()))
+        .nest("/booking", booking::routes())
+        .nest("/scheduling", scheduling::routes())
 }
