@@ -1,9 +1,0 @@
-[package]
-name = "foundation"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-chrono = "0.4.39"
-thiserror = "2.0.11"
-uuid = { version = "1.12.0", features = ["v7", "fast-rng"] }
