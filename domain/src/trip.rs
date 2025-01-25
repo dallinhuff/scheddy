@@ -1,5 +1,13 @@
+use chrono::{DateTime, Utc};
+
 #[derive(Debug, Clone)]
-pub struct Trip;
+pub struct Trip {
+    pub id: TripId,
+    pub kind: TripKind,
+    pub location: TripLocation,
+    pub max_capacity: i32,
+    pub start_time: DateTime<Utc>,
+}
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct TripId(pub uuid::Uuid);
@@ -16,5 +24,5 @@ pub enum TripKind {}
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum TripLocation {
     Provo,
-    Weber
+    Weber,
 }

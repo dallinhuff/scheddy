@@ -1,0 +1,15 @@
+drop table if exists rental;
+drop table if exists equipment;
+drop table if exists booking_participant;
+drop table if exists booking;
+drop table if exists trip;
+drop table if exists location;
+drop table if exists trip_kind;
+drop table if exists employee_assignable_role;
+drop table if exists employee_role;
+drop table if exists employee;
+drop table if exists customer_preferences;
+drop table if exists customer;
+drop table if exists participant_waiver;
+drop table if exists participant;
+drop table if exists waiver;

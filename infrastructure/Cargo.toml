@@ -6,3 +6,13 @@ edition = "2021"
 [dependencies]
 application = { path = "../application" }
 domain = { path = "../domain" }
+sqlx = { version = "0.8.3", features = [
+    "runtime-tokio",
+    "tls-native-tls",
+    "postgres",
+    "derive",
+    "macros",
+    "migrate",
+    "uuid",
+    "chrono"
+] }
