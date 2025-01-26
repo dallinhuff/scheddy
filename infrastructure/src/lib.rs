@@ -2,3 +2,5 @@
 //! ports exposed by [application].
 //!
 //! [application]: ../application
+
+mod repository;
