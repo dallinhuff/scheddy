@@ -1,8 +1,11 @@
 [package]
-name = "cli"
+name = "server"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.95"
 application = { path = "../application" }
+axum = "0.8.1"
 infrastructure = { path = "../infrastructure" }
+tokio = { version = "1.43.0", features = ["full"] }
