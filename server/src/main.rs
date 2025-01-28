@@ -11,7 +11,7 @@ mod routes;
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let app = routes::routes();
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:4000").await?;
     axum::serve(listener, app).await?;
 
     Ok(())
