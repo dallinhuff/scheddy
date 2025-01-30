@@ -18,7 +18,7 @@ pub struct Booking {
 }
 
 /// A unique identifier for a [Booking].
-#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct BookingId(pub uuid::Uuid);
 
 impl BookingId {
