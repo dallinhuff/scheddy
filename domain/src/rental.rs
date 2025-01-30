@@ -1,5 +1,6 @@
 use crate::booking::BookingId;
 
+#[derive(Debug, Clone)]
 pub struct Rental {
     pub id: RentalId,
     pub booking: BookingId,
