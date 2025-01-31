@@ -16,7 +16,7 @@ pub struct CustomerId(pub uuid::Uuid);
 
 impl CustomerId {
     pub fn new() -> Self {
-       Self(uuid::Uuid::now_v7())
+        Self(uuid::Uuid::now_v7())
     }
 }
 
@@ -52,7 +52,7 @@ pub struct CustomerPhoneNumber {
 pub enum PhoneType {
     Home,
     Mobile,
-    Work
+    Work,
 }
 
 /// Configurable preferences a [Customer] may have.

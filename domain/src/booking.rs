@@ -1,8 +1,8 @@
-use std::collections::HashMap;
 use crate::customer::CustomerId;
 use crate::participant::ParticipantId;
 use crate::rental::{EquipmentKind, RentalId};
 use crate::trip::{TripId, TripKind};
+use std::collections::HashMap;
 
 /// A reservation for a party of [Participant]s to participate in a [Trip].
 ///
@@ -50,5 +50,5 @@ pub struct BookingParticipant {
 pub struct BookingRental {
     pub id: RentalId,
     pub equipment: EquipmentKind,
-    pub quantity: u16
+    pub quantity: u16,
 }

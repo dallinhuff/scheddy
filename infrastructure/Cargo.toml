@@ -16,3 +16,4 @@ sqlx = { version = "0.8.3", features = [
     "uuid",
     "chrono"
 ] }
+uuid = "1.12.1"
