@@ -6,3 +6,4 @@
 //! [domain]: ../domain
 
 pub mod user;
+pub mod vendor;
