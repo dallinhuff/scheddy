@@ -13,4 +13,5 @@ pub mod rental;
 pub mod schedule;
 pub mod service;
 pub mod trip;
+pub mod user;
 pub mod waiver;

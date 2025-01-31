@@ -5,7 +5,7 @@ pub struct Rental {
     pub id: RentalId,
     pub booking: BookingId,
     pub equipment: EquipmentKind,
-    pub quantity: u16
+    pub quantity: u16,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]

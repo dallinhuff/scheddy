@@ -3,4 +3,4 @@
 //!
 //! [application]: ../application
 
-mod repository;
+pub mod user;
