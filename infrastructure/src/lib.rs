@@ -4,3 +4,4 @@
 //! [application]: ../application
 
 pub mod user;
+pub mod vendor;
