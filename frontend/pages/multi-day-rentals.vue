@@ -1,3 +1,3 @@
 <template>
-  <ContentPage page-name="Multi-day Rentals"/>
+  <ContentPage page-name="Multi-day Rentals" />
 </template>
