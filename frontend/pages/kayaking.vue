@@ -1,3 +1,3 @@
 <template>
-  <ContentPage page-name="Kayaking"/>
+  <ContentPage page-name="Kayaking" />
 </template>
