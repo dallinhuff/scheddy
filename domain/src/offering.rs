@@ -45,10 +45,9 @@ pub struct Tour {
 /// The style/modality of a [Tour].
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-#[cfg_attr(feature = "serde", serde(variant_identifier))]
 pub enum TourStyle {
-    Guided = 1,
-    SelfGuided = 2,
+    Guided,
+    SelfGuided,
 }
 
 impl Display for TourStyle {

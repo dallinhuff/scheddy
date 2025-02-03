@@ -1,5 +1,5 @@
 pub mod repository {
-    use domain::offering::{Offering, OfferingId};
+    use domain::offering::{Offering, OfferingId, Rental, Tour};
     use domain::vendor::VendorId;
 
     /// A repository for reading & persisting [Offering] data.
@@ -9,9 +9,9 @@ pub mod repository {
 
         async fn get_offerings_by_vendor(&self, id: VendorId) -> Result<Vec<Offering>, Error>;
 
-        async fn get_tours_by_vendor(&self, id: VendorId) -> Result<Vec<Offering>, Error>;
+        async fn get_tours_by_vendor(&self, id: VendorId) -> Result<Vec<Tour>, Error>;
 
-        async fn get_rentals_by_vendor(&self, id: VendorId) -> Result<Vec<Offering>, Error>;
+        async fn get_rentals_by_vendor(&self, id: VendorId) -> Result<Vec<Rental>, Error>;
 
         async fn save(&self, offering: Offering) -> Result<Offering, Error>;
 
