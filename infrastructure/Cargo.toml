@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 application = { path = "../application" }
-domain = { path = "../domain" }
+domain = { path = "../domain", features = ["serde"] }
 sqlx = { version = "0.8.3", features = [
     "runtime-tokio",
     "tls-native-tls",
@@ -16,4 +16,5 @@ sqlx = { version = "0.8.3", features = [
     "uuid",
     "chrono"
 ] }
-uuid = "1.12.1"
+uuid = { version = "1.12.1", features = ["serde"] }
+serde = { version = "1.0.217", features = ["derive"] }

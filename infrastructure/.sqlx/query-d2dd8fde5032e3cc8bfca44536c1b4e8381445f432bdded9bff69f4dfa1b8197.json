@@ -1,0 +1,40 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            WITH rentals_by_tour AS\n            (\n                SELECT tour_id AS id,\n                       json_agg(json_build_object('id', rental_id, 'name', name)) AS rentals\n                FROM tour_rental\n                     JOIN rental ON rental_id = rental.id\n                     JOIN offering ON rental_id = offering.id\n                     GROUP BY tour_id\n            )\n            SELECT id, name, style, coalesce(rentals, '[]'::json) as rentals\n            FROM tour\n                JOIN offering USING (id)\n                LEFT JOIN rentals_by_tour USING (id)\n            WHERE vendor_id = $1\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "style",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "rentals",
+        "type_info": "Json"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      null
+    ]
+  },
+  "hash": "d2dd8fde5032e3cc8bfca44536c1b4e8381445f432bdded9bff69f4dfa1b8197"
+}

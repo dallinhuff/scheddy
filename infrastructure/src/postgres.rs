@@ -1,5 +1,6 @@
 use sqlx::PgPool;
 
+mod offering;
 mod user;
 mod vendor;
 
