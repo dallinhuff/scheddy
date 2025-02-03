@@ -1,7 +1,7 @@
-/// A [Vendor] provides one or more [Service]s that a
+/// A [Vendor] provides one or more [Offerings]s that a
 /// [Customer] can schedule [Booking]s for.
 ///
-/// [Service]: crate::service::Service
+/// [Offering]: crate::offering::Offering
 /// [Customer]: crate::customer::Customer
 /// [Booking]: crate::booking::Booking
 #[derive(Debug, Clone)]

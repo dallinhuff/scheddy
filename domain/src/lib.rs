@@ -7,10 +7,10 @@
 pub mod booking;
 pub mod customer;
 pub mod employee;
+pub mod offering;
 pub mod participant;
 pub mod rental;
 pub mod schedule;
-pub mod service;
 pub mod trip;
 pub mod user;
 pub mod vendor;
