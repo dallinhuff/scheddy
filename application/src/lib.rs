@@ -5,5 +5,6 @@
 //!
 //! [domain]: ../domain
 
+pub mod offering;
 pub mod user;
 pub mod vendor;
