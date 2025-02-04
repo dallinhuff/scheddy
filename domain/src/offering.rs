@@ -1,32 +1,60 @@
 use crate::vendor::VendorId;
+use std::fmt::{Display, Formatter};
 use uuid::Uuid;
 
-/// A general offering/service provided by a [Vendor].
+/// A good or service that a [Vendor] may offer to [Customer]s.
 ///
 /// [Vendor]: crate::vendor::Vendor
+/// [Customer]: crate::customer::Customer
 #[derive(Debug, Clone)]
-pub struct Offering {
-    pub id: OfferingId,
-    pub vendor: OfferingVendor,
-    pub name: String,
-    pub description: String,
-    pub kind: OfferingKind,
+pub enum Offering {
+    Rental(Rental),
+    Tour(Tour),
 }
 
 /// A unique identifier for an [Offering].
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct OfferingId(pub Uuid);
 
-/// A pertinent view of a [Vendor] from an [Offering]'s perspective.
+/// An [Offering] for an equipment rental.
+/// It may be either a child of a [Tour] or an offering in its own right.
 #[derive(Debug, Clone)]
-pub struct OfferingVendor {
-    pub id: VendorId,
+pub struct Rental {
+    pub id: OfferingId,
+    pub vendor: VendorId,
+    pub name: String,
 }
 
-/// A variant of [Offering]
-/// i.e, the kinds & specific details that an [Offering] may have & entail.
-#[derive(Debug, Clone, PartialEq)]
-pub enum OfferingKind {
-    Tour {},
-    Rental {},
+/// An [Offering] for a scheduled experience.
+/// It may be guided or self-guided.
+#[derive(Debug, Clone)]
+pub struct Tour {
+    pub id: OfferingId,
+    pub vendor: VendorId,
+    pub name: String,
+    pub style: TourStyle,
+    pub rentals: Vec<TourRental>,
+}
+
+/// The style/modality of a [Tour].
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub enum TourStyle {
+    Guided = 1,
+    SelfGuided = 2,
+}
+
+impl Display for TourStyle {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            TourStyle::Guided => write!(f, "Guided"),
+            TourStyle::SelfGuided => write!(f, "Self-Guided"),
+        }
+    }
+}
+
+/// A child-rental of a [Tour], backed by an underlying [Rental].
+#[derive(Debug, Clone)]
+struct TourRental {
+    pub id: OfferingId,
+    pub name: String,
 }
