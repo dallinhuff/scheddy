@@ -22,12 +22,22 @@ pub mod ports {
     use std::future::Future;
 
     pub trait OfferingRepository {
-        fn get_by_id(
+        fn get_offering_by_id(
             &self,
             id: OfferingId,
         ) -> impl Future<Output = Result<Option<Offering>, RepositoryError>>;
 
-        fn get_by_vendor(
+        fn get_offerings_by_vendor(
+            &self,
+            vendor_id: VendorId,
+        ) -> impl Future<Output = Result<Vec<Offering>, RepositoryError>>;
+
+        fn get_tours_by_vendor(
+            &self,
+            vendor_id: VendorId,
+        ) -> impl Future<Output = Result<Vec<Offering>, RepositoryError>>;
+
+        fn get_rentals_by_vendor(
             &self,
             vendor_id: VendorId,
         ) -> impl Future<Output = Result<Vec<Offering>, RepositoryError>>;
