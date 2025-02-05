@@ -1,29 +1,16 @@
-use crate::PgError;
-use application::vendor::ports::{Error, VendorRepository};
+use crate::postgres::Postgres;
+use application::vendor::ports::repository::{Error, VendorRepository};
 use domain::vendor::{Vendor, VendorId};
-use sqlx::{query, query_as, FromRow, PgPool};
+use sqlx::{query, query_as, FromRow};
 use uuid::Uuid;
 
-#[derive(Debug, Clone)]
-pub struct PgVendorRepository {
-    pool: PgPool,
-}
-
-impl PgVendorRepository {
-    pub const fn new(pool: PgPool) -> Self {
-        Self { pool }
-    }
-}
-
-impl VendorRepository for PgVendorRepository {
+impl VendorRepository for Postgres {
     async fn get_by_id(&self, id: VendorId) -> Result<Option<Vendor>, Error> {
-        let vendor = query_as!(VendorDto, "select id, name from vendor where id = $1", id.0)
+        query_as!(VendorDto, "select id, name from vendor where id = $1", id.0)
             .fetch_optional(&self.pool)
             .await
-            .map_err(PgError::from)?
-            .map(Vendor::from);
-
-        Ok(vendor)
+            .map_err(|e| Error::Unknown(e.into()))
+            .map(|v| v.map(Vendor::from))
     }
 
     async fn create(&self, vendor: Vendor) -> Result<Vendor, Error> {
@@ -36,7 +23,7 @@ impl VendorRepository for PgVendorRepository {
         )
         .fetch_one(&self.pool)
         .await
-        .map_err(|e| PgError::from(e).into())
+        .map_err(|e| Error::Unknown(e.into()))
         .map(Vendor::from)
     }
 
@@ -50,7 +37,7 @@ impl VendorRepository for PgVendorRepository {
         )
         .fetch_one(&self.pool)
         .await
-        .map_err(|e| PgError::from(e).into())
+        .map_err(|e| Error::Unknown(e.into()))
         .map(Vendor::from)
     }
 
@@ -58,7 +45,7 @@ impl VendorRepository for PgVendorRepository {
         query!("delete from vendor where id = $1", id.0)
             .execute(&self.pool)
             .await
-            .map_err(|e| PgError::from(e).into())
+            .map_err(|e| Error::Unknown(e.into()))
             .map(|_| ())
     }
 }
@@ -84,11 +71,5 @@ impl From<Vendor> for VendorDto {
             id: v.id.0,
             name: v.name,
         }
-    }
-}
-
-impl From<PgError> for Error {
-    fn from(value: PgError) -> Self {
-        todo!()
     }
 }
