@@ -49,7 +49,7 @@ impl OfferingRepository for Postgres {
                 LEFT JOIN rentals_by_tour USING (id)
             WHERE vendor_id = $1
             ",
-            vendor_id.0,
+            vendor_id.inner(),
         )
         .fetch_all(&self.pool)
         .await
@@ -71,7 +71,7 @@ impl OfferingRepository for Postgres {
     async fn get_rentals_by_vendor(&self, vendor_id: VendorId) -> Result<Vec<Rental>, Error> {
         let rentals = query!(
             "SELECT id, name FROM offering JOIN rental USING (id) WHERE vendor_id = $1",
-            vendor_id.0
+            vendor_id.inner()
         )
         .fetch_all(&self.pool)
         .await
@@ -120,7 +120,7 @@ async fn get_tour_by_id(pool: &PgPool, id: OfferingId) -> Result<Option<Tour>, E
     Ok(Some(Tour {
         id: OfferingId(tour.id),
         name: tour.name,
-        vendor: VendorId(tour.vendor_id),
+        vendor: tour.vendor_id.into(),
         style: match tour.style {
             n if n == TourStyle::SelfGuided as i32 => TourStyle::SelfGuided,
             n if n == TourStyle::Guided as i32 => TourStyle::Guided,
@@ -159,7 +159,7 @@ async fn get_rental_by_id(pool: &PgPool, rental_id: OfferingId) -> Result<Option
     .map(|r| {
         Ok(Rental {
             id: rental_id,
-            vendor: VendorId(r.vendor_id),
+            vendor: r.vendor_id.into(),
             name: r.name,
         })
     })
@@ -172,7 +172,7 @@ async fn save_tour(pool: &PgPool, tour: &Tour) -> Result<Tour, Error> {
     query!(
         "INSERT INTO offering (id, vendor_id, name) VALUES ($1, $2, $3) RETURNING id, vendor_id, name",
         tour.id.0,
-        tour.vendor.0,
+        tour.vendor.inner(),
         tour.name
     )
         .fetch_one(&mut *txn)
@@ -211,7 +211,7 @@ async fn save_rental(pool: &PgPool, rental: &Rental) -> Result<Rental, Error> {
     let res = query!(
         "INSERT INTO offering (id, vendor_id, name) VALUES ($1, $2, $3) RETURNING id, vendor_id, name",
         rental.id.0,
-        rental.vendor.0,
+        rental.vendor.inner(),
         rental.name
     )
     .fetch_one(&mut *txn)
@@ -228,7 +228,7 @@ async fn save_rental(pool: &PgPool, rental: &Rental) -> Result<Rental, Error> {
 
     Ok(Rental {
         id: OfferingId(res.id),
-        vendor: VendorId(res.vendor_id),
+        vendor: res.vendor_id.into(),
         name: res.name,
     })
 }

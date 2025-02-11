@@ -20,7 +20,7 @@ impl From<repository::Error> for Error {
     }
 }
 
-/// An implementation of [VendorService] that uses a [VendorRepository]
+/// An implementation of [`VendorService`] that uses a [`VendorRepository`]
 /// to access & persist [Vendor] data.
 #[derive(Debug, Clone)]
 pub struct VendorServiceLive<R: VendorRepository> {

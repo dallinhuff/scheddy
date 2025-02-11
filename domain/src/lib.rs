@@ -4,6 +4,8 @@
 //! It is agnostic of any outside ports/infrastructure, deferring such
 //! orchestration & interaction to an outer layer.
 
+#![warn(clippy::pedantic)]
+
 pub mod offering;
 pub mod user;
 pub mod vendor;

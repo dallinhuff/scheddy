@@ -6,11 +6,15 @@ use uuid::Uuid;
 
 impl VendorRepository for Postgres {
     async fn get_by_id(&self, id: VendorId) -> Result<Option<Vendor>, Error> {
-        query_as!(VendorDto, "select id, name from vendor where id = $1", id.0)
-            .fetch_optional(&self.pool)
-            .await
-            .map_err(|e| Error::Unknown(e.into()))
-            .map(|v| v.map(Vendor::from))
+        query_as!(
+            VendorDto,
+            "select id, name from vendor where id = $1",
+            id.inner()
+        )
+        .fetch_optional(&self.pool)
+        .await
+        .map_err(|e| Error::Unknown(e.into()))
+        .map(|v| v.map(Vendor::from))
     }
 
     async fn create(&self, vendor: Vendor) -> Result<Vendor, Error> {
@@ -42,7 +46,7 @@ impl VendorRepository for Postgres {
     }
 
     async fn delete(&self, id: VendorId) -> Result<(), Error> {
-        query!("delete from vendor where id = $1", id.0)
+        query!("delete from vendor where id = $1", id.inner())
             .execute(&self.pool)
             .await
             .map_err(|e| Error::Unknown(e.into()))
@@ -59,7 +63,7 @@ struct VendorDto {
 impl From<VendorDto> for Vendor {
     fn from(dto: VendorDto) -> Self {
         Vendor {
-            id: VendorId(dto.id),
+            id: dto.id.into(),
             name: dto.name,
         }
     }
@@ -68,7 +72,7 @@ impl From<VendorDto> for Vendor {
 impl From<Vendor> for VendorDto {
     fn from(v: Vendor) -> Self {
         VendorDto {
-            id: v.id.0,
+            id: v.id.into(),
             name: v.name,
         }
     }
