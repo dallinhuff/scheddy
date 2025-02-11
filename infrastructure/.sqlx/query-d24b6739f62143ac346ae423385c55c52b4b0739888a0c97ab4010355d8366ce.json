@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT id, vendor_id, name, style FROM offering JOIN tour USING (id) WHERE id = $1",
+  "query": "INSERT INTO rental (rental_id, vendor_id, title) VALUES ($1, $2, $3) RETURNING rental_id, vendor_id, title",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "id",
+        "name": "rental_id",
         "type_info": "Uuid"
       },
       {
@@ -15,26 +15,22 @@
       },
       {
         "ordinal": 2,
-        "name": "name",
+        "name": "title",
         "type_info": "Text"
-      },
-      {
-        "ordinal": 3,
-        "name": "style",
-        "type_info": "Int4"
       }
     ],
     "parameters": {
       "Left": [
-        "Uuid"
+        "Uuid",
+        "Uuid",
+        "Text"
       ]
     },
     "nullable": [
       false,
       false,
-      false,
       false
     ]
   },
-  "hash": "ebd9a542d44f7d2ac4e2e6fbd89bf52e004103d3c84ec9665754fe3ac6b31f07"
+  "hash": "d24b6739f62143ac346ae423385c55c52b4b0739888a0c97ab4010355d8366ce"
 }

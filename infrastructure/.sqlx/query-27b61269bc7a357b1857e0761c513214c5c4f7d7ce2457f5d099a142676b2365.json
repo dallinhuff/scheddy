@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT id, name FROM tour_rental JOIN offering ON rental_id = id WHERE tour_id = $1",
+  "query": "SELECT * FROM vendor WHERE vendor_id = $1",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "id",
+        "name": "vendor_id",
         "type_info": "Uuid"
       },
       {
@@ -24,5 +24,5 @@
       false
     ]
   },
-  "hash": "bb710c3637bf0929fd9c25a22c7d2681b78a24279ead18730b061469eca65147"
+  "hash": "27b61269bc7a357b1857e0761c513214c5c4f7d7ce2457f5d099a142676b2365"
 }

@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "INSERT INTO offering (id, vendor_id, name) VALUES ($1, $2, $3) RETURNING id, vendor_id, name",
+  "query": "SELECT tour_id, vendor_id, title FROM tour WHERE tour_id = $1",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "id",
+        "name": "tour_id",
         "type_info": "Uuid"
       },
       {
@@ -15,15 +15,13 @@
       },
       {
         "ordinal": 2,
-        "name": "name",
+        "name": "title",
         "type_info": "Text"
       }
     ],
     "parameters": {
       "Left": [
-        "Uuid",
-        "Uuid",
-        "Text"
+        "Uuid"
       ]
     },
     "nullable": [
@@ -32,5 +30,5 @@
       false
     ]
   },
-  "hash": "3914547d5051ec1e86058b619cdc8bd8d8678ebce0a6e39d4cce01ab166431ae"
+  "hash": "f4c7440399299259df8f4b0f855b964441145e75683c022013e2201597f11c57"
 }
