@@ -1,1 +1,1 @@
-drop table if exists app_user;
+DROP TABLE IF EXISTS app_user;

@@ -1,16 +1,16 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT vendor_id, name FROM offering JOIN rental USING (id) WHERE id = $1",
+  "query": "SELECT rental_id, title FROM rental WHERE vendor_id = $1",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "vendor_id",
+        "name": "rental_id",
         "type_info": "Uuid"
       },
       {
         "ordinal": 1,
-        "name": "name",
+        "name": "title",
         "type_info": "Text"
       }
     ],
@@ -24,5 +24,5 @@
       false
     ]
   },
-  "hash": "37a06c1327cafc1f8d110ec7eb5452fab8dfc2fcef17f1bcfbf5f6f52c92613c"
+  "hash": "fe18609e0f135b4b8bcd246eb925622a1d95a3720e5ff95e8bbda81eb1238868"
 }

@@ -1,1 +1,1 @@
-drop table if exists vendor;
+DROP TABLE IF EXISTS vendor;

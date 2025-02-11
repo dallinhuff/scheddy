@@ -1,5 +1,7 @@
-create table if not exists vendor
+CREATE TABLE IF NOT EXISTS vendor
 (
-    id   uuid primary key,
-    name text not null
+    vendor_id UUID NOT NULL,
+    name      TEXT NOT NULL,
+
+    PRIMARY KEY (vendor_id)
 );

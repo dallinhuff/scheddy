@@ -8,7 +8,7 @@ impl VendorRepository for Postgres {
     async fn get_by_id(&self, id: VendorId) -> Result<Option<Vendor>, Error> {
         query_as!(
             VendorDto,
-            "select id, name from vendor where id = $1",
+            "SELECT * FROM vendor WHERE vendor_id = $1",
             id.inner()
         )
         .fetch_optional(&self.pool)
@@ -18,11 +18,11 @@ impl VendorRepository for Postgres {
     }
 
     async fn create(&self, vendor: Vendor) -> Result<Vendor, Error> {
-        let VendorDto { id, name } = VendorDto::from(vendor);
+        let VendorDto { vendor_id, name } = VendorDto::from(vendor);
         query_as!(
             VendorDto,
-            "insert into vendor (id, name) values ($1, $2) returning id, name",
-            id,
+            "INSERT INTO vendor (vendor_id, name) VALUES ($1, $2) RETURNING vendor_id, name",
+            vendor_id,
             name
         )
         .fetch_one(&self.pool)
@@ -32,12 +32,12 @@ impl VendorRepository for Postgres {
     }
 
     async fn update(&self, vendor: Vendor) -> Result<Vendor, Error> {
-        let VendorDto { id, name } = VendorDto::from(vendor);
+        let VendorDto { vendor_id, name } = VendorDto::from(vendor);
         query_as!(
             VendorDto,
-            "update vendor set name = $1 where id = $2 returning id, name",
+            "UPDATE vendor SET name = $1 WHERE vendor_id = $2 RETURNING vendor_id, name",
             name,
-            id
+            vendor_id
         )
         .fetch_one(&self.pool)
         .await
@@ -46,7 +46,7 @@ impl VendorRepository for Postgres {
     }
 
     async fn delete(&self, id: VendorId) -> Result<(), Error> {
-        query!("delete from vendor where id = $1", id.inner())
+        query!("DELETE FROM vendor WHERE vendor_id = $1", id.inner())
             .execute(&self.pool)
             .await
             .map_err(|e| Error::Unknown(e.into()))
@@ -56,14 +56,14 @@ impl VendorRepository for Postgres {
 
 #[derive(FromRow)]
 struct VendorDto {
-    id: Uuid,
+    vendor_id: Uuid,
     name: String,
 }
 
 impl From<VendorDto> for Vendor {
     fn from(dto: VendorDto) -> Self {
         Vendor {
-            id: dto.id.into(),
+            id: dto.vendor_id.into(),
             name: dto.name,
         }
     }
@@ -72,7 +72,7 @@ impl From<VendorDto> for Vendor {
 impl From<Vendor> for VendorDto {
     fn from(v: Vendor) -> Self {
         VendorDto {
-            id: v.id.into(),
+            vendor_id: v.id.into(),
             name: v.name,
         }
     }

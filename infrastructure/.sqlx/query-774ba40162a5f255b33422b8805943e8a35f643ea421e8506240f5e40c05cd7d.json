@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "delete from app_user where id = $1",
+  "query": "DELETE FROM vendor WHERE vendor_id = $1",
   "describe": {
     "columns": [],
     "parameters": {
@@ -10,5 +10,5 @@
     },
     "nullable": []
   },
-  "hash": "c6c0ef1408f7623f48e26ef2060e6d8488cea2bfbf79ece606e0be8c9cb46d0f"
+  "hash": "774ba40162a5f255b33422b8805943e8a35f643ea421e8506240f5e40c05cd7d"
 }

@@ -1,7 +1,11 @@
-create table if not exists app_user
+CREATE TABLE IF NOT EXISTS app_user
 (
-    id       uuid primary key,
-    username text not null unique,
-    email    text not null unique,
-    password text not null
+    app_user_id UUID NOT NULL,
+    username    TEXT NOT NULL,
+    email       TEXT NOT NULL,
+    password    TEXT NOT NULL,
+
+    PRIMARY KEY (app_user_id),
+    UNIQUE (username),
+    UNIQUE (email)
 );

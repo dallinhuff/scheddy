@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "select id, username, password, email from app_user where id = $1",
+  "query": "SELECT * FROM app_user WHERE app_user_id = $1",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "id",
+        "name": "app_user_id",
         "type_info": "Uuid"
       },
       {
@@ -15,12 +15,12 @@
       },
       {
         "ordinal": 2,
-        "name": "password",
+        "name": "email",
         "type_info": "Text"
       },
       {
         "ordinal": 3,
-        "name": "email",
+        "name": "password",
         "type_info": "Text"
       }
     ],
@@ -36,5 +36,5 @@
       false
     ]
   },
-  "hash": "84b7909e1739f21fc87f5015d09004eb67fe83b27ec2c5be5624c9d2f14887bf"
+  "hash": "ba64c8f75955c1968088d74c6e2528d0ba4a845303d8d0031b2c1607299e651d"
 }

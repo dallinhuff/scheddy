@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            SELECT tour_id AS \"tour_id!\",\n                   title AS \"title!\",\n                   rentals AS \"rentals!\"\n            FROM tour_with_rentals\n            WHERE vendor_id = $1\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "tour_id!",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "title!",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "rentals!",
+        "type_info": "Json"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "1447d995280080553428435cdd600f709190a1bb719b3e1f8e1054d2fdaccb27"
+}

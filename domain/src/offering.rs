@@ -1,5 +1,4 @@
 use crate::vendor::VendorId;
-use std::fmt::{Display, Formatter};
 use uuid::Uuid;
 
 /// A good or service that a [Vendor] may offer to [Customer]s.
@@ -27,7 +26,7 @@ pub struct OfferingId(pub Uuid);
 pub struct Rental {
     pub id: OfferingId,
     pub vendor: VendorId,
-    pub name: String,
+    pub title: String,
 }
 
 /// An [Offering] for a scheduled experience.
@@ -37,26 +36,8 @@ pub struct Rental {
 pub struct Tour {
     pub id: OfferingId,
     pub vendor: VendorId,
-    pub name: String,
-    pub style: TourStyle,
+    pub title: String,
     pub rentals: Vec<TourRental>,
-}
-
-/// The style/modality of a [Tour].
-#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum TourStyle {
-    Guided,
-    SelfGuided,
-}
-
-impl Display for TourStyle {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        match self {
-            TourStyle::Guided => write!(f, "Guided"),
-            TourStyle::SelfGuided => write!(f, "Self-Guided"),
-        }
-    }
 }
 
 /// A child-rental of a [Tour], backed by an underlying [Rental].
@@ -64,5 +45,5 @@ impl Display for TourStyle {
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct TourRental {
     pub id: OfferingId,
-    pub name: String,
+    pub title: String,
 }

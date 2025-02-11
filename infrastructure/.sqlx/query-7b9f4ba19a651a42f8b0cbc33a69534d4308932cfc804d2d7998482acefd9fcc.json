@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "insert into vendor (id, name) values ($1, $2) returning id, name",
+  "query": "UPDATE vendor SET name = $1 WHERE vendor_id = $2 RETURNING vendor_id, name",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "id",
+        "name": "vendor_id",
         "type_info": "Uuid"
       },
       {
@@ -16,8 +16,8 @@
     ],
     "parameters": {
       "Left": [
-        "Uuid",
-        "Text"
+        "Text",
+        "Uuid"
       ]
     },
     "nullable": [
@@ -25,5 +25,5 @@
       false
     ]
   },
-  "hash": "f56e56755f02aab279b336b1b75181096d01bca2e1ca7bfa247d18216acaf81a"
+  "hash": "7b9f4ba19a651a42f8b0cbc33a69534d4308932cfc804d2d7998482acefd9fcc"
 }
