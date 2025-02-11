@@ -3,4 +3,6 @@
 //!
 //! [application]: ../application
 
+#![warn(clippy::pedantic)]
+
 pub mod postgres;

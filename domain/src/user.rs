@@ -14,6 +14,7 @@ pub struct User {
 pub struct UserId(pub Uuid);
 
 impl UserId {
+    #[must_use]
     pub fn new() -> Self {
         Self(Uuid::now_v7())
     }

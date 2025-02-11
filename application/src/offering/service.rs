@@ -11,7 +11,7 @@ pub trait OfferingService {
     async fn get_offerings_by_vendor(&self, id: VendorId) -> Result<Vec<Offering>, Error>;
 }
 
-/// An error that may occur when calling a fallible method in [OfferingService].
+/// An error that may occur when calling a fallible method in [`OfferingService`].
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
     /// An unknown/downstream error occurred.
@@ -25,8 +25,8 @@ impl From<repository::Error> for Error {
     }
 }
 
-/// An implementation of [OfferingService] that uses an
-/// [OfferingRepository] to read & save persistent data.
+/// An implementation of [`OfferingService`] that uses an
+/// [`OfferingRepository`] to read & save persistent data.
 #[derive(Clone)]
 pub struct OfferingServiceLive<T: OfferingRepository> {
     repo: T,

@@ -6,6 +6,8 @@
 //! [infrastructure] ../infrastructure
 //! [application] ../application
 
+#![warn(clippy::pedantic)]
+
 mod routes;
 
 #[tokio::main]

@@ -5,6 +5,8 @@
 //!
 //! [domain]: ../domain
 
+#![warn(clippy::pedantic)]
+
 pub mod offering;
 pub mod user;
 pub mod vendor;

@@ -1,3 +1,5 @@
+use uuid::Uuid;
+
 /// A [Vendor] provides one or more [Offerings]s that a
 /// [Customer] can schedule [Booking]s for.
 ///
@@ -14,10 +16,34 @@ pub struct Vendor {
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(transparent))]
-pub struct VendorId(pub uuid::Uuid);
+pub struct VendorId(Uuid);
 
 impl VendorId {
+    #[must_use]
     pub fn new() -> Self {
-        Self(uuid::Uuid::now_v7())
+        Self(Uuid::now_v7())
+    }
+
+    #[must_use]
+    pub fn inner(&self) -> Uuid {
+        self.0
+    }
+}
+
+impl Default for VendorId {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl From<Uuid> for VendorId {
+    fn from(uuid: Uuid) -> Self {
+        Self(uuid)
+    }
+}
+
+impl From<VendorId> for Uuid {
+    fn from(vendor_id: VendorId) -> Self {
+        vendor_id.0
     }
 }

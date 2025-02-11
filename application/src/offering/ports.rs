@@ -18,7 +18,7 @@ pub mod repository {
         async fn delete(&self, id: OfferingId) -> Result<(), Error>;
     }
 
-    /// An error that may occur while calling a fallible method in [OfferingRepository].
+    /// An error that may occur while calling a fallible method in [`OfferingRepository`].
     #[derive(Debug, thiserror::Error)]
     pub enum Error {
         #[error(transparent)]
