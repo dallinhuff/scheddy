@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "INSERT INTO rental (rental_id, vendor_id, title) VALUES ($1, $2, $3) RETURNING rental_id, vendor_id, title",
+  "query": "SELECT rental_id, title\n               FROM rental JOIN offering ON rental_id = offering_id\n               WHERE vendor_id = $1",
   "describe": {
     "columns": [
       {
@@ -10,27 +10,19 @@
       },
       {
         "ordinal": 1,
-        "name": "vendor_id",
-        "type_info": "Uuid"
-      },
-      {
-        "ordinal": 2,
         "name": "title",
         "type_info": "Text"
       }
     ],
     "parameters": {
       "Left": [
-        "Uuid",
-        "Uuid",
-        "Text"
+        "Uuid"
       ]
     },
     "nullable": [
       false,
-      false,
       false
     ]
   },
-  "hash": "d24b6739f62143ac346ae423385c55c52b4b0739888a0c97ab4010355d8366ce"
+  "hash": "f57748a8757b6707f6c6342d4b1cd74629c0b57d332c6ab2663c051a9f9fec8a"
 }

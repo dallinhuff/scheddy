@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT tour_id, vendor_id, title FROM tour WHERE tour_id = $1",
+  "query": "SELECT tour_id, vendor_id, title\n           FROM tour JOIN offering ON tour_id = offering_id\n           WHERE tour_id = $1",
   "describe": {
     "columns": [
       {
@@ -30,5 +30,5 @@
       false
     ]
   },
-  "hash": "f4c7440399299259df8f4b0f855b964441145e75683c022013e2201597f11c57"
+  "hash": "b26d1759d47fc933f7b1ef61d90e88edd1e3aab3e0e54348490e525184f7c521"
 }
