@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "INSERT INTO tour (tour_id, vendor_id, title) VALUES ($1, $2, $3) RETURNING tour_id, vendor_id, title",
+  "query": "INSERT INTO offering (offering_id, vendor_id, title)\n           VALUES ($1, $2, $3)\n           ON CONFLICT (offering_id)\n              DO UPDATE SET (vendor_id, title) = ($2, $3)\n           RETURNING offering_id AS rental_id, vendor_id, title",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "tour_id",
+        "name": "rental_id",
         "type_info": "Uuid"
       },
       {
@@ -32,5 +32,5 @@
       false
     ]
   },
-  "hash": "a5034bcbcfca75c9725c358fdb8be72e35d0fb3abb70f61e42f7b4df95839a17"
+  "hash": "16329c17a25130bdb8e92b37186df832742d4bd2ffe92fad687a75158158b37c"
 }

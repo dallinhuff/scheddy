@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT rental_id, title FROM tour_rental JOIN rental USING (rental_id) WHERE tour_id = $1",
+  "query": "SELECT rental_id, title\n           FROM tour_rental\n             JOIN rental USING (rental_id)\n             JOIN offering ON rental_id = offering_id\n           WHERE tour_id = $1",
   "describe": {
     "columns": [
       {
@@ -24,5 +24,5 @@
       false
     ]
   },
-  "hash": "937764c5227f1c36dd7eaac7e70d5435de9c704dff1b45d3a8b2046504724d08"
+  "hash": "96d1cf5a722c680edce6847496bdd7aceb5eccc873d48ef14b5127ce4eaead70"
 }
