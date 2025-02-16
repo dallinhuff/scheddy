@@ -1,75 +1,42 @@
-# Nuxt Minimal Starter
+# SaaS Frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Batteries included
 
-## Setup
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript
+- [Rsbuild](https://rsbuild.dev/): A Rust-based web build tool
+- [Biome](https://biomejs.dev/): A Rust-based formatter and sensible linter for the web
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces
 
-Make sure to install dependencies:
+If you don't like React for some reason, Rsbuild makes it easy to replace it with something else!
 
-```bash
-# npm
-npm install
+# Development
 
-# pnpm
+To get started with the development of the SaaS frontend, follow these steps:
+
+### 1. Install Packages
+
+Use the following command to install the required packages using pnpm:
+
+```sh
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### 2. Run in Development Mode
 
-Start the development server on `http://localhost:3000`:
+Once the packages are installed, run your frontend application in development mode with the following command:
 
-```bash
-# npm
-npm run dev
-
-# pnpm
+```sh
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+This will start the development frontend server serving via vit
 
-Build the application for production:
+### 3. Build The application
 
-```bash
-# npm
-npm run build
+To build your application run the following command:
 
-# pnpm
+```sh
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+After the build `dist` folder is ready to served by loco. run loco `cargo loco start` and the frontend application will served via Loco

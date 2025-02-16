@@ -1,32 +1,24 @@
 {
-  "name": "scheddy",
+  "name": "frontend",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier . --check",
-    "lint:fix": "eslint . --fix && prettier --write --list-different ."
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "lint": "biome check src",
+    "preview": "rsbuild preview"
   },
   "dependencies": {
-    "@nuxt/content": "^3.1.0",
-    "@primevue/themes": "^4.2.5",
-    "nuxt": "^3.15.4",
-    "primevue": "^4.2.5",
-    "vue": "latest",
-    "vue-router": "latest"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.0.1",
-    "@primevue/nuxt-module": "^4.2.5",
-    "eslint": "^9.20.0",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.0"
+    "@biomejs/biome": "^1",
+    "@rsbuild/core": "^1",
+    "@rsbuild/plugin-react": "^1",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   }
 }

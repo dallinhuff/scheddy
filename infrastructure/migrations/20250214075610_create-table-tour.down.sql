@@ -1,4 +1,0 @@
-DROP VIEW IF EXISTS tour_offering;
-DROP TABLE IF EXISTS tour_rental;
-DROP TABLE IF EXISTS tour;
-DROP TYPE IF EXISTS tour_kind;
