@@ -1,12 +1,11 @@
 pub mod repository {
-    use domain::user::{EmailAddress, User, UserId, Username};
+    use domain::user::{EmailAddress, User, UserId};
 
     #[trait_variant::make(Send)]
     pub trait UserRepository: Sync {
         async fn get_by_id(&self, id: UserId) -> Result<Option<User>, Error>;
-        async fn get_by_username(&self, username: Username) -> Result<Option<User>, Error>;
         async fn get_by_email(&self, email: EmailAddress) -> Result<Option<User>, Error>;
-        async fn create(&self, user: User) -> Result<User, Error>;
+        async fn create(&self, user: User, password: String) -> Result<User, Error>;
         async fn delete(&self, user: User) -> Result<(), Error>;
     }
 

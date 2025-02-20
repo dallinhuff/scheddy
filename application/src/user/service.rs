@@ -1,4 +1,3 @@
-use crate::user::ports::repository;
 use crate::user::ports::repository::UserRepository;
 use domain::user::{User, UserId};
 
@@ -10,13 +9,13 @@ pub trait UserService {
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
     #[error(transparent)]
-    Unknown(#[from] anyhow::Error),
-}
+    Domain(#[from] domain::user::UserError),
 
-impl From<repository::Error> for Error {
-    fn from(error: repository::Error) -> Self {
-        Error::Unknown(error.into())
-    }
+    #[error(transparent)]
+    Repository(#[from] super::ports::repository::Error),
+
+    #[error(transparent)]
+    Unknown(#[from] anyhow::Error),
 }
 
 #[derive(Debug, Clone)]
@@ -32,6 +31,8 @@ impl<R: UserRepository> UserServiceLive<R> {
 
 impl<R: UserRepository> UserService for UserServiceLive<R> {
     async fn get_by_id(&self, id: UserId) -> Result<Option<User>, Error> {
-        self.repo.get_by_id(id).await.map_err(Into::into)
+        let user = self.repo.get_by_id(id).await?;
+
+        Ok(user)
     }
 }

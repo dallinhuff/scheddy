@@ -9,3 +9,6 @@
 pub mod offering;
 pub mod user;
 pub mod vendor;
+
+pub use user::{User, UserId};
+pub use vendor::{Vendor, VendorId};

@@ -1,6 +1,6 @@
 use uuid::Uuid;
 
-/// A [Vendor] provides one or more [Offerings]s that a
+/// A [Vendor] provides one or more [Offering]s that a
 /// [Customer] can schedule [Booking]s for.
 ///
 /// [Offering]: crate::offering::Offering
