@@ -1,7 +1,7 @@
 use crate::postgres::Postgres;
 use application::vendor::ports::repository::{Error, VendorRepository};
 use domain::vendor::{Vendor, VendorId};
-use sqlx::{query, query_as, FromRow};
+use sqlx::{FromRow, query, query_as};
 use uuid::Uuid;
 
 impl VendorRepository for Postgres {
