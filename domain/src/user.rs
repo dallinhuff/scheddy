@@ -10,24 +10,36 @@ use std::sync::Arc;
 pub struct User {
     id: UserId,
     email: EmailAddress,
+    password: Arc<str>,
     full_name: Arc<str>,
 }
 
 impl User {
     /// Creates a new user and assign them a unique [`UserId`].
-    pub fn new(email: EmailAddress, full_name: impl Into<Arc<str>>) -> Self {
+    pub fn new(
+        email: EmailAddress,
+        password: impl Into<Arc<str>>,
+        full_name: impl Into<Arc<str>>,
+    ) -> Self {
         Self {
             id: UserId::new(),
             email,
+            password: password.into(),
             full_name: full_name.into(),
         }
     }
 
     /// Creates an instance of [`User`] from an existing [`UserId`] and fields.
-    pub fn existing(id: UserId, email: EmailAddress, full_name: impl Into<Arc<str>>) -> Self {
+    pub fn existing(
+        id: UserId,
+        email: EmailAddress,
+        password: impl Into<Arc<str>>,
+        full_name: impl Into<Arc<str>>,
+    ) -> Self {
         Self {
             id,
             email,
+            password: password.into(),
             full_name: full_name.into(),
         }
     }
@@ -47,6 +59,18 @@ impl User {
     /// Updates/changes the user's email address.
     pub fn set_email(&mut self, email: EmailAddress) -> &mut Self {
         self.email = email;
+        self
+    }
+
+    /// The user's hashed & salted password.
+    #[must_use]
+    pub fn password(&self) -> &str {
+        &self.password
+    }
+
+    /// Updates/changes the user's hashed & salted password.
+    pub fn set_password(&mut self, password: impl Into<Arc<str>>) -> &mut Self {
+        self.password = password.into();
         self
     }
 
