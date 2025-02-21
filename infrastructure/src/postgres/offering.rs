@@ -3,7 +3,7 @@ use application::offering::ports::repository::{Error, OfferingRepository};
 use domain::offering::{Offering, OfferingId, Rental, Tour, TourRental};
 use domain::vendor::VendorId;
 use serde::Deserialize;
-use sqlx::{query, PgPool};
+use sqlx::{PgPool, query};
 
 impl OfferingRepository for Postgres {
     async fn get_offering_by_id(&self, id: OfferingId) -> Result<Option<Offering>, Error> {
