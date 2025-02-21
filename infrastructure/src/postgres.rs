@@ -21,4 +21,18 @@ impl Postgres {
 
         Ok(Self { pool })
     }
+
+    /// Runs non-applied migrations against the currently connected DB and validates
+    /// previously applied migrations to ensure the DB is in the correct/expected state.
+    ///
+    /// Should be run only once at application startup.
+    ///
+    /// # Errors
+    /// - A [`sqlx::Error`] indicates that the migrations were unable to be applied, a conflict
+    ///   in the DB schema was detected, or some other issue with communicating with the DB.
+    pub async fn migrate(&self) -> Result<(), sqlx::Error> {
+        sqlx::migrate!().run(&self.pool).await?;
+
+        Ok(())
+    }
 }
