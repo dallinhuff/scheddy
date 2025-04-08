@@ -8,4 +8,4 @@ anyhow = "1.0.95"
 application = { path = "../application" }
 axum = "0.8.1"
 infrastructure = { path = "../infrastructure" }
-tokio = { version = "1.43.0", features = ["full"] }
+tokio = { version = "1.43.1", features = ["full"] }
