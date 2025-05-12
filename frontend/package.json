@@ -16,7 +16,7 @@
   "dependencies": {
     "@nuxt/content": "^3.5.1",
     "@primevue/themes": "^4.3.2",
-    "nuxt": "^3.17.0",
+    "nuxt": "^3.17.3",
     "primevue": "^4.3.2",
     "vue": "latest",
     "vue-router": "latest"
