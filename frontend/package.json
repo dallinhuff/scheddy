@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^3.5.1",
-    "@primevue/themes": "^4.3.2",
+    "@primevue/themes": "^4.3.7",
     "nuxt": "^3.17.5",
     "primevue": "^4.3.2",
     "vue": "latest",
